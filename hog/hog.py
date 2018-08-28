@@ -21,8 +21,14 @@ def roll_dice(num_rolls, dice = six_sided):
     assert type(num_rolls) == int, 'num_rolls must be an integer.'
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
+    outcome_list = []
     for i in range(num_rolls):
-        dice()
+        outcome_list.append(dice())
+
+    if 1 in outcome_list:
+        return 1
+    else:
+        return sum(outcome_list)
     # END PROBLEM 1
 
 
@@ -33,7 +39,11 @@ def free_bacon(score):
     """
     assert score < 100, 'The game should be over.'
     # BEGIN PROBLEM 2
-    "*** YOUR CODE HERE ***"
+    fnum = score // 10
+    lnum = score % 10
+    #product = fnum * lnum
+
+    return (((fnum*lnum)%10)+1)
     # END PROBLEM 2
 
 
@@ -51,7 +61,12 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     assert opponent_score < 100, 'The game should be over.'
     # BEGIN PROBLEM 3
-    "*** YOUR CODE HERE ***"
+
+    if num_rolls==0:
+        return free_bacon(opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
+
     # END PROBLEM 3
 
 
@@ -59,7 +74,12 @@ def is_swap(score0, score1):
     """Return whether the current player's score has a ones digit
     equal to the opponent's score's tens digit."""
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    fnum0 = score0 // 10
+    lnum0 = score0 % 10
+    fnum1 = score1 // 10
+    lnum1 = score1 % 10
+
+    return lnum0 == fnum1
     # END PROBLEM 4
 
 
